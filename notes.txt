@@ -1,0 +1,4 @@
+We need to implement our own equals and hash code method and base
+equality on the field ID of the objects.
+
+We will implement a toString()
