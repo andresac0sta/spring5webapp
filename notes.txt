@@ -1,0 +1,24 @@
+--Here we created a class to run the application BootStrapData.java
+--we annotated with @Component to tell spring framework that this is a spring managed component.
+    which implements CommandLineRunner.
+--CommandLineRunner  is used to run a code block only once in application’s lifetime – after application is initialized.
+--you can use CommandLineRunner in 3 ways
+    Using CommandLineRunner as @Component.
+    Implement CommandLineRunner in @SpringBootApplication.
+    Using CommandLineRunner as Bean.
+-- see https://howtodoinjava.com/spring-boot/command-line-runner-interface-example/ for more details
+
+Our case:
+    @Component
+    public class BootStrapData implements CommandLineRunner {}
+
+Next we are doing constructor dependency injection by declaring the properties of the repository interfaces
+
+    private final AuthorRepository authorRepository;
+    private final BookRepository bookRepository;
+
+    public BootStrapData(AuthorRepository authorRepository, BookRepository bookRepository) {
+        this.authorRepository = authorRepository;
+        this.bookRepository = bookRepository;
+    }
+
