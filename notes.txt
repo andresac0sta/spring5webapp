@@ -1,0 +1,19 @@
+spring data repositories
+
+--spring data is a family of projects but we are going to look into
+--spring data JPA which is made to work with Hibernate.
+--spring data implements the repository pattern instead of the
+    data access objects (DAO)
+--With the repository pattern the repository object is responsible
+    for your persistence and query  operation.
+
+--spring data JPA is taking care of all the hibernate commands, all the transactional
+    commands.
+
+To implement the repository pattern
+--create a new directory called repositories
+--add an interface e.g. AuthorRepository that extends CrudRepository
+    public interface AuthorRepository extends CrudRepository<Author, Long> {}
+--where CrudRepository<Author, Long> Author is the class and Long for the id
+    property which is a Long
+--The CrudRepository will grant us access to all CRUD operations count(),findAll().
