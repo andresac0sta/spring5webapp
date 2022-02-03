@@ -1,0 +1,52 @@
+--configuring controllers associates a controller method with
+    a request path.
+--When spring get a request on a specific path a specific controller method
+    will be called.
+
+To configure a controller in spring:
+--Use the @Controller annotation.
+    This will register the class as a spring bean and as a controller in
+    spring MVC.
+
+    @Controller
+    public class BookController {}
+
+To set up the http request path
+--use @RequestMapping annotation
+    this will tell spring to associate a path with a controller method.
+
+           @RequestMapping("/books")
+            public String getBooks(Model model){
+
+                model.addAttribute("books", bookRepository.findAll());
+
+                return "books";
+            }
+    **notice the /books path  @RequestMapping("/books")
+    **notice the (Model model) parameter which is the model part of the MVC
+    **Keep in mind the model is what is going to be return to the view layer behind the scenes so the
+        view layer is going to get a copy of the model.
+    **notice we are returning the "view books"
+
+--Is good practice adding a package for controllers.
+--Use Controller as a naming convention e.g BookController.
+
+--Now add a field  BookRepository created using the repository pattern which handles
+    the service layer getting stuff from the database.
+--Add a constructor to the class and inject a BookRepository.
+--Basically we are asking spring to inject a BookRepository
+
+     private final BookRepository bookRepository;
+
+     public BookController(BookRepository bookRepository) {
+            this.bookRepository = bookRepository;
+     }
+--Now that we have a constructor and this is a controller when spring instantiates this it will inject an instance of that
+    book repository into our controller.
+
+--Now add the attribute to our model
+    model.addAttribute("books", bookRepository.findAll());
+
+--"books" is the attribute name and bookRepository.findAll() is the attribute value.
+
+--The method returns a list of books in the model for the view layer.
