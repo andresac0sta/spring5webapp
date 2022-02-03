@@ -1,0 +1,21 @@
+--To enable the H2 database add the following line to the applications.properties file
+    spring.h2.console.enabled=true
+
+--Once you run the application
+
+--tomcat is started on port 8080  and the H2 database instance is located at
+    http://localhost:8080/h2-console
+
+--Get the url from the console output window which is the '/h2-console' and the 'jdbc:h2:mem:testdb' part
+    is database connect string.
+    H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:testdb'
+
+--"mem" means in memory with schema name testdb
+
+--Once you navigate to the h2 console make sure the field JDBC URL matches the 'jdbc:h2:mem:testdb'
+--The password is set blank
+
+Once connected you can see the tables created by hibernate
+
+This H2 database and console comes in very handy when developing and debugging you can get feedback
+quickly.
