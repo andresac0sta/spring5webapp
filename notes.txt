@@ -1,0 +1,43 @@
+http://localhost:8080/books
+
+--Templates are used to generate dynamic HTML used for
+    when we are pulling something out of the database, and we put it on a webpage.
+--Thymeleaf is a template language and is pronounced time leaf.
+
+--The first thing you need to do is add the spring boot stater dependency for thymeleaf
+    <dependency>
+		<groupId>org.springframework.boot</groupId>
+	    <artifactId>spring-boot-starter-thymeleaf</artifactId>
+	</dependency>
+
+--By default spring boot is going to look under resources/templates for
+    thymeleaf templates.
+--HTML is a subset of XML
+--To the list.html thymeleaf template add the thymeleaf space name 'xmlns:th="http://www.thymeleaf.org'
+        <html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+--now use the thymeleaf template to generate an iterator in the list.html
+--The iterator has a variable named book and gets the book attribute from the model
+
+    //BookController.java
+        model.addAttribute("books", bookRepository.findAll());
+
+--this is how we are asking the model to give us the property of books.
+
+    //list.html
+         <tr th:each="book : ${books}">
+
+--for each book thymeleaf is going to render each element below
+      <td th:text="${book.id}">123</td>
+      <td th:text="${book.title}"> Spring in Action</td>
+      <td th:text="${book.publisher.name}">Wrox</td>
+
+--publisher is an object in the book so you need to use dot (.) notation to get the name
+    "${book.publisher.name}"
+
+--now make sure you change the return value in the BookController BookController.java so that it looks
+    for the "list.html" template inside the "books" directory
+        return "books/list";
+
+--so the component flow is
+    database -> spring data JPA -> spring MVC -> Thymeleaf
