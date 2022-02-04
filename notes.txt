@@ -1,4 +1,5 @@
 http://localhost:8080/books
+http://localhost:8080/authors
 
 --Templates are used to generate dynamic HTML used for
     when we are pulling something out of the database, and we put it on a webpage.
